@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
+                bat 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
             }
             post {
                 success {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn -f hello-app/pom.xml test'
+                bat 'mvn -f hello-app/pom.xml test'
             }
             post {
                 always {
