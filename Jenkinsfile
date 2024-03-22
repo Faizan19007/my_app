@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your project (e.g., Maven build)
-                bat 'mvn clean install'
+                bat 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
             }
             post {
                 success {
