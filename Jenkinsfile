@@ -22,7 +22,7 @@ pipeline {
         stage('Static Code Analysis - FindBugs') {
             steps {
                 // Run FindBugs analysis
-                bat 'mvn findbugs:findbugs'
+                bat 'mvn -f hello-app/pom.xml findbugs:findbugs'
             }
         }
         stage('Static Code Analysis - PMD') {
