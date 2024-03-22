@@ -28,13 +28,13 @@ pipeline {
         stage('Static Code Analysis - PMD') {
             steps {
                 // Run PMD analysis
-                bat 'mvn pmd:pmd'
+                bat 'mvn -f hello-app/pom.xml pmd:pmd'
             }
         }
         stage('Test') {
             steps {
                 // Run tests
-                bat 'mvn test'
+                bat 'mvn -f hello-app/pom.xml test'
             }
             post {
                 always {
