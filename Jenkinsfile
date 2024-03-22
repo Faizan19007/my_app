@@ -1,9 +1,16 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your code from Git
+                git url: 'https://github.com/yourusername/your-repo.git', branch: 'main'
+            }
+        }
         stage('Build') {
             steps {
-                bat 'mvn -f hello-app/pom.xml -B -DskipTests clean package'
+                // Build your project (e.g., Maven build)
+                bat 'mvn clean install'
             }
             post {
                 success {
@@ -12,9 +19,22 @@ pipeline {
                 }
             }
         }
+        stage('Static Code Analysis - FindBugs') {
+            steps {
+                // Run FindBugs analysis
+                bat 'mvn findbugs:findbugs'
+            }
+        }
+        stage('Static Code Analysis - PMD') {
+            steps {
+                // Run PMD analysis
+                bat 'mvn pmd:pmd'
+            }
+        }
         stage('Test') {
             steps {
-                bat 'mvn -f hello-app/pom.xml test'
+                // Run tests
+                bat 'mvn test'
             }
             post {
                 always {
@@ -22,5 +42,6 @@ pipeline {
                 }
             }
         }
+        // Other stages...
     }
 }
