@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your code from Git
-                git url: 'https://github.com/yourusername/your-repo.git', branch: 'main'
+                git url: 'https://github.com/abdulsamadilyas82/my_app', branch: 'main'
             }
         }
         stage('Build') {
